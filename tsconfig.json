@@ -19,7 +19,7 @@
       "~/*": ["./*"],
       "@/*": ["./*"]
     },
-    "types": ["@types/node", "@nuxt/types", "@types/jest"]
+    "types": ["@types/node", "@nuxt/types", "@types/jest", "vue-apollo/types"]
   },
   "exclude": ["node_modules", ".nuxt", "dist"]
 }

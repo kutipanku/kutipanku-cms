@@ -1,6 +1,6 @@
 // "You can never understand everything. But, you should push yourself to understand the system."
 // - Ryan Dahl (Creator of Node JS)
-import { Configuration } from '@nuxt/types'
+import { Configuration } from '@nuxt/types';
 
 const nuxtConfig: Configuration = {
   mode: 'spa',
@@ -44,7 +44,8 @@ const nuxtConfig: Configuration = {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
-    '@nuxtjs/dotenv'
+    '@nuxtjs/dotenv',
+    '@nuxtjs/apollo'
   ],
   /*
    ** Axios module configuration
@@ -58,7 +59,7 @@ const nuxtConfig: Configuration = {
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
     theme: {
-      dark: true,
+      dark: false,
       themes: {
         dark: {
           primary: '#333333',
@@ -69,6 +70,14 @@ const nuxtConfig: Configuration = {
           success: '#4CAF50',
           warning: '#FFC107'
         }
+      }
+    }
+  },
+  // Apollo configuration
+  apollo: {
+    clientConfigs: {
+      default: {
+        httpEndpoint: 'http://localhost:4000/graphql'
       }
     }
   },
@@ -89,6 +98,6 @@ const nuxtConfig: Configuration = {
     },
     transpile: ['vuetify/lib']
   }
-}
+};
 
-export default nuxtConfig
+export default nuxtConfig;
