@@ -63,9 +63,10 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component } from 'nuxt-property-decorator'
-import Logo from '~/components/Logo.vue'
-import VuetifyLogo from '~/components/VuetifyLogo.vue'
+import { Vue, Component } from 'nuxt-property-decorator';
+import Logo from '~/components/Logo.vue';
+import VuetifyLogo from '~/components/VuetifyLogo.vue';
+import { getQuotes } from '~/graphql/queries/quotes';
 
 @Component({
   components: {
@@ -73,5 +74,27 @@ import VuetifyLogo from '~/components/VuetifyLogo.vue'
     VuetifyLogo
   }
 })
-export default class Home extends Vue {}
+export default class Home extends Vue {
+  /* ------------------------------------
+  => asyncData (Lifecycle)
+  ------------------------------------ */
+  async asyncData(context: any): Promise<any> {
+    const client = context.app.apolloProvider.defaultClient;
+    const res = await client.query({
+      query: getQuotes,
+      variables: {
+        page: 1,
+        rowPerPage: 10
+      }
+    });
+
+    const { quotes } = res.data;
+
+    console.warn(quotes);
+
+    return {
+      quotes
+    };
+  }
+}
 </script>
